@@ -7,10 +7,10 @@
 shadow" action="{{ url('products/new') }}" method="POST">
     @csrf
 
-    @if(session('error')) 
-        <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
-            {{ session('error') }}
-        </div>
+    @if(session('error'))
+    <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
+        {{ session('error') }}
+    </div>
     @endif
 
     <h1 class="text-2xl font-bold mb-6 text-gray-900
@@ -36,12 +36,15 @@ dark:text-white">Cadastrar Produto</h1>
     <p class="text-red-600 mb-4 text-sm">{{ $message }}</p>
     @enderror
 
-    <label class="block mb-1 text-gray-700 dark:text-gray-300">Imagem:</label>
-    <input name="image" type="file" accept="image/*" class="w-full p-2 mb-4
-rounded border dark:bg-gray-700 dark:text-white" />
+    <div x-data="{ imageURL: null }" class="mb-4">
+        <label class="block mb-1 text-gray-700 dark:text-gray-300">Imagem:</label>
+        <input x-on:change="imageURL = URL.createObjectURL($event.target.files[0])" name="image" type="file" accept="image/*" class="w-full p-2 mb-4 rounded border dark:bg-gray-700 dark:text-white" />
+        <img x-show="imageURL" :src="imageURL" x-bind:src="imageURL" class="w-32 h-32 object-cover mt-2 rounded">
+    </div>
+
 
     @error('image')
-        <p class="text-red-600 font-bold text-sm mb-4">{{ $message }}</p>
+    <p class="text-red-600 font-bold text-sm mb-4">{{ $message }}</p>
     @enderror
 
 
@@ -56,9 +59,9 @@ rounded border dark:bg-gray-700 dark:text-white" />
         @endforeach
     </select>
 
-    <x-meu-button>
+    <x-primary-button>
         Salvar
-    </x-meu-button>
+    </x-primary-button>
 
 
 </form>

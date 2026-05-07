@@ -50,9 +50,9 @@ rounded border dark:bg-gray-700 dark:text-white" />
         @endforeach
     </select>
 
-    <x-meu-button>
+    <x-primary-button>
         Salvar
-    </x-meu-button>
+    </x-primary-button>
 
 </form>
 @endsection
