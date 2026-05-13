@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/types/new', [TypesController::class, 'create'])->name('types.create');
     Route::get('/home', [HomeController::class, 'create'])->name('home.create');
+
+    Route::get('/products/report', [ProductsController::class, 'report'])->name('products.report');
+    Route::get('/products/report/pdf', [ProductsController::class, 'reportPdf'])->name('products.report.pdf');
 });
 
 require __DIR__ . '/auth.php';

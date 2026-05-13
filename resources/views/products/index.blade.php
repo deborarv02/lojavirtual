@@ -9,15 +9,19 @@ rounded-lg shadow mx-auto">
     <div class="flex justify-between items-center mb-6">
 
         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Produtos</h1>
-        <a href="{{ url('products/new') }}" class="bg-blue-600 text-white px-4 py-2
-rounded hover:bg-blue-700">Cadastrar</a>
+        <div class="flex gap-2">
+            <a href="{{ route('products.report') }}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700">
+                Relatorio
+            </a>
+            <a href="{{ url('products/new') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cadastrar</a>
+        </div>
 
     </div>
 
-    @if(session('success')) 
-        <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
-            {{ session('success') }}
-        </div>
+    @if(session('success'))
+    <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
+        {{ session('success') }}
+    </div>
     @endif
 
     <table class="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600">
@@ -35,13 +39,13 @@ rounded hover:bg-blue-700">Cadastrar</a>
         <tbody>
             @foreach($products as $product)
             <tr class="border-b border-gray-300 dark:border-gray-600">
-                
+
                 <td class="px-4 py-2 text-gray-900 dark:text-white">
                     @if ($product->image)
                     <img src="{{ asset('storage/' . $product->image) }}" alt="Imagem do
 produto" class="w-20 h-20 object-cover rounded">
                     @else
-                        <img src="{{ asset('storage/no-image.jpg') }}" alt="Imagem do
+                    <img src="{{ asset('storage/no-image.jpg') }}" alt="Imagem do
 produto" class="w-20 h-20 object-cover rounded">
                     @endif
                 </td>
